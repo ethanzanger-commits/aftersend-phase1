@@ -1,0 +1,16 @@
+{
+  "name": "aftersend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AfterSend - personal Gmail email lifecycle tracker",
+  "scripts": {
+    "test": "vitest run",
+    "test:db": "vitest run tests/db"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.12",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

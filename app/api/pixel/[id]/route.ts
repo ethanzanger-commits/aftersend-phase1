@@ -2,27 +2,32 @@ import { getAdminClient } from "../../../../lib/supabase";
 
 export const dynamic = "force-dynamic";
 
-// 1x1 transparent GIF
-const GIF = Buffer.from("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64");
-
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> | { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
   try {
     const supabase = getAdminClient();
+    const { data: link } = await supabase
+      .from("tracked_links")
+      .select("id, tracked_email_id, destination_url")
+      .eq("id", id)
+      .single();
+
+    if (!link || !/^https?:\/\//i.test(link.destination_url)) {
+      return new Response("Not found", { status: 404 });
+    }
+
     await supabase.from("email_events").insert({
-      tracked_email_id: id,
-      event_type: "open_signal",
+      tracked_email_id: link.tracked_email_id,
+      event_type: "link_clicked",
+      tracked_link_id: link.id,
     });
+
+    return Response.redirect(link.destination_url, 302);
   } catch (e) {
-    console.error("pixel error", e);
+    console.error("click error", e);
+    return new Response("Error", { status: 500 });
   }
-  return new Response(GIF, {
-    headers: {
-      "Content-Type": "image/gif",
-      "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-    },
-  });
 }

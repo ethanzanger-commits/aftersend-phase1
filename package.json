@@ -1,32 +1,21 @@
 {
-  "name": "aftersend",
+  "name": "aftersend-phase1",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.1.0",
-  "description": "AfterSend - personal Gmail email lifecycle tracker",
   "scripts": {
-    "test": "vitest run",
-    "test:db": "vitest run tests/db"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@electric-sql/pglite": "^0.5.12",
-    "@types/node": "^26.6.5",
-    "typescript": "^7.0.2",
-    "vitest": "^5.0.5"
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.0.0"
   }
-}
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start"
-},
-"dependencies": {
-  "next": "^15.0.0",
-  "react": "^19.0.0",
-  "react-dom": "^19.0.0",
-  "@supabase/supabase-js": "^2.45.0"
-},
-"devDependencies": {
-  "typescript": "^5.0.0",
-  "@types/node": "^20.0.0",
-  "@types/react": "^19.0.0"
 }

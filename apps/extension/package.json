@@ -1,0 +1,8 @@
+{
+  "name": "@aftersend/extension",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": { "build": "node build.mjs", "typecheck": "tsc --noEmit" },
+  "dependencies": { "@supabase/supabase-js": "^2.45.0", "react": "latest", "react-dom": "latest" },
+  "devDependencies": { "@types/chrome": "latest", "@types/react": "latest", "@types/react-dom": "latest", "esbuild": "^0.25.0", "typescript": "^5.6.0" }
+}
